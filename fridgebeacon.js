@@ -2,7 +2,7 @@ var Bleacon = require('bleacon');
 
 var pubnub = require("pubnub")({
     ssl           : true,  // <- enable TLS Tunneling over TCP
-    publish_key   : "pub-c-3df44b26-e4ee-4453-a1c6-7cebfff635da",
+    publish_key   : "XXXX",
     subscribe_key : "sub-c-904b9d38-36a3-11e6-ac64-0619f8945a4f"
 });
 
