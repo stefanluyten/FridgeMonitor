@@ -1,14 +1,20 @@
 var Bleacon = require('bleacon');
 
 var pubnub = require("pubnub")({
-    ssl           : true,  
-    publish_key   : "xxx",
+    ssl           : true,  // <- enable TLS Tunneling over TCP
+    publish_key   : "pub-c-3df44b26-e4ee-4453-a1c6-7cebfff635da",
     subscribe_key : "sub-c-904b9d38-36a3-11e6-ac64-0619f8945a4f"
 });
 
-var datenow = new Date();
-Bleacon.startScanning("a4950666c5b14b44b5121370f02d74de");
 
+//var fs = require('fs');
+var datenow = new Date();
+//var wstream = fs.createWriteStream('myOutput'+datenow+'.txt'); 
+
+// a4950001c5b14b44b5121370f02d74de
+//Bleacon.startScanning("a4950003c5b14b44b5121370f02d74de");
+Bleacon.startScanning("a4950666c5b14b44b5121370f02d74de");
+//Bleacon.startScanning();
 var output = "";
 var count = 0;
 var vorige=0, laatste = 0;
@@ -19,7 +25,9 @@ Bleacon.on('discover', function(bleacon) {
   count++;
   output = count + " - " + date + " - " + bleacon.uuid + " - " + bleacon.minor + " "+ bleacon.proximity+" "+ bleacon.accuracy+" " + bleacon.measuredPower +" " + bleacon.rssi ;
 	console.log(output);
-
+  //wstream.write(date + " - " + bleacon.minor + " "+ bleacon.proximity+" "+ bleacon.accuracy+" " + bleacon.measuredPower +" " + bleacon.rssi +"\n");
+  
+  //if(bleacon.uuid=="a4950002c5b14b44b5121370f02d74de"){
     vorige = laatste;
     laatste = bleacon.minor;
     if(laatste != vorige){
@@ -43,7 +51,7 @@ Bleacon.on('discover', function(bleacon) {
             }
           });
     }
-
+  //}
 
 
 });
